@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/3.0.3/socket.io.js"></script>
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    var socket = io('http://localhost:3131');
+    socket.on('connect', function(a){console.log(a)});
+    socket.on('event', function(data){});
+    socket.on('disconnect', function(){});
+  </script> 
+</body>
+</html>

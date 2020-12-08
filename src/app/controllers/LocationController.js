@@ -1,13 +1,19 @@
 const Location = require('../models/location');
+const { sendMessage } = require('../../websocket');
 
 class LocationController {
   async store(req, res) {
     const { latitude, longitude } = req.body;
-
+    console.log({ latitude, longitude });
     const location = await Location.create({
       latitude,
       longitude,
     });
+    sendMessage('new', {
+      lat: latitude,
+      lng: longitude,
+    });
+
     return res.json(location);
   }
 

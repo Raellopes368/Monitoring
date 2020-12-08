@@ -1,24 +1,18 @@
 /* eslint-disable comma-dangle */
 const express = require('express');
-const io = require('socket.io');
 const http = require('http');
 const cors = require('cors');
 const routes = require('./routes');
+const { setupSocket } = require('./websocket');
 
 class App {
   constructor() {
     this.server = express();
     this.app = http.createServer(this.server);
+    setupSocket(this.app);
     this.middlewares();
     this.security();
     this.routes();
-    this.io = io(this.app, {
-      cors: {
-        origin: '*',
-        methods: ['GET', 'POST'],
-        credentials: true,
-      },
-    });
   }
 
   middlewares() {
